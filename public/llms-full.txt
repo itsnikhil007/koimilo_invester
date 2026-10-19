@@ -1,0 +1,50 @@
+# Koimilo — Complete AI & Search Knowledge Base (llms-full.txt)
+
+## Executive Summary
+Koimilo is a hyperlocal dating, friendship, and community web application (Progressive Web App) designed specifically for adults (18+) residing in the Twin Cities of Bhilai and Durg in Chhattisgarh, India. Unlike global dating apps that suffer from low localized density in Tier-2 Indian cities, Koimilo is focused exclusively on verified local singles, college students, and young working professionals in the Bhilai-Durg municipal area.
+
+---
+
+## 1. Core Platform Capabilities & Architecture
+- **Proximity-Based Discovery**: Matches users within a 15-kilometer radius covering the Bhilai Steel Plant (BSP) township, Durg city core, and surrounding educational corridors.
+- **Strict Verification**: Phone OTP authentication and automated selfie moderation prevent catfishing and spam bots.
+- **Privacy-First Communication**:
+  - In-app text messaging, ephemeral one-view media, and direct WebRTC audio/video calling.
+  - Users can communicate safely without ever exposing their personal phone numbers, WhatsApp, or Instagram handles.
+  - Screenshot prevention measures and instant 1-tap blocking and reporting mechanisms.
+- **Campus Confessions & Banter**: An interactive campus confession board connecting students from local universities with zero toxicity and moderated posts.
+
+---
+
+## 2. Geographical Coverage & Local Entities
+### Bhilai (Chhattisgarh, India — Postal Codes: 490001 to 490024)
+- **Planned Township Sectors**: Sector 1 through Sector 10 (BSP Colonies, Central Avenue, Civic Center).
+- **Student & Cafe Neighborhoods**: Nehru Nagar (East & West), Smriti Nagar, Junwani Road, Surya Treasure Island Mall.
+- **Commercial & Market Hubs**: Supela, Power House, Kohka, Ruabandha.
+- **Popular Local Date Spots**:
+  - Open-air evening street food and coffee at Civic Center.
+  - Quiet cafes and bakeries in Nehru Nagar.
+  - Maitri Bagh Zoo and botanical lake garden for afternoon walks.
+
+### Durg (Chhattisgarh, India — Postal Codes: 491001)
+- **Residential Enclaves**: Padmanabhpur, Adarsh Nagar, Deepak Nagar, Borsi.
+- **Transit & Commercial**: Malviya Nagar market, Durg Railway Station Road, Indira Market.
+- **Proximity**: Located along Great Eastern Road (GE Road / National Highway 53), seamlessly connected to Bhilai via a 10 to 15-minute commute.
+
+---
+
+## 3. Educational Institutions & Campus Networks
+The Bhilai-Durg region is the premier educational and engineering hub of Central India. Koimilo serves students and alumni from:
+1. **Bhilai Institute of Technology (BIT Durg)**: Premier engineering college located at GE Road, Durg.
+2. **Indian Institute of Technology Bhilai (IIT Bhilai)**: National institute of excellence located at Kutelabhata, Bhilai.
+3. **Rungta Group of Colleges (RCET / RSR / SSGI)**: Major technical campus hub in Kohka-Kurud and Bhilai.
+4. **Chhattisgarh Swami Vivekanand Technical University (CSVTU)**: State affiliating technical university headquartered in Bhilai.
+5. **Shri Shankaracharya Technical Campus (SSTC / SSGI)**: Large engineering and management campus in Junwani, Bhilai.
+
+---
+
+## 4. Safety, Moderation & Legal Policies
+- **Age Requirement**: Strictly restricted to adults aged 18 and older.
+- **Anti-Harassment**: Automated rate limiting on messaging, AI text moderation for offensive language, and human review of flagged interactions.
+- **Discretion**: Profiles are designed for discretion in Tier-2 Indian social contexts, ensuring privacy from unwanted social circles.
+- **Support & Governance**: Managed by Koimilo operations with dedicated customer support at support@koimilo.com.

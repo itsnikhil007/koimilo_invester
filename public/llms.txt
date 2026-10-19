@@ -1,0 +1,27 @@
+# Koimilo — Bhilai & Durg Dating & Social App
+
+> Koimilo is the local dating and social connection platform built specifically for college students and verified adults (18+) living in Bhilai and Durg, Chhattisgarh. It connects singles living across the BSP Township, Nehru Nagar, Civic Center, and neighboring local campuses.
+
+## Core Features & Local Coverage
+
+- [Home](https://koimilo.com): Overview of Koimilo's local dating community, phone verification, and proximity matching in Bhilai-Durg.
+- [Dating in Bhilai](https://koimilo.com/dating-in-bhilai): Local guide for singles in Bhilai covering Nehru Nagar, Civic Center, Sectors 1–10, Smriti Nagar, and local meetup spots.
+- [Dating in Durg](https://koimilo.com/dating-in-durg): Local guide for singles in Durg covering Padmanabhpur, Malviya Nagar, Station Road, and the 15-minute twin-city transit corridor.
+- [Campus Confessions](https://koimilo.com/confessions): Verified local college banter, confessions, and campus crush board for students in the Bhilai-Durg educational hub.
+
+## Trust, Privacy & Safety
+
+- [Safety Guidelines](https://koimilo.com/safety): Anti-harassment policies, in-app audio/video calling without phone number sharing, screenshot prevention, and verified profile standards.
+- [Community Guidelines](https://koimilo.com/guidelines): Zero-tolerance rules for fake profiles, commercial solicitation, harassment, and underage accounts.
+
+## Campus Networks
+
+- [BIT Durg Hub](https://koimilo.com/campus/bit-durg): Verified campus dating and connections for Bhilai Institute of Technology (Durg).
+- [Rungta Hub](https://koimilo.com/campus/rungta-bhilai): Campus social network for Rungta College of Engineering & Technology students.
+- [IIT Bhilai Hub](https://koimilo.com/campus/iit-bhilai): Student networking and dating for IIT Bhilai (Kutelabhata campus).
+- [CSVTU Hub](https://koimilo.com/campus/csvtu): Regional university network connecting affiliated engineering and polytechnic colleges.
+
+## Legal & Compliance
+
+- [Terms of Service](https://koimilo.com/terms): User agreement, eligibility requirements (18+ only), and platform policies.
+- [Privacy Policy](https://koimilo.com/privacy): Data protection, location privacy guarantees, and end-to-end security measures.

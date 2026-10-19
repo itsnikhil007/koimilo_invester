@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Koimilo | Interactive Investor Pitch Deck (PPT)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;800&display=swap');
+    
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: #050507;
+      color: #f4f4f5;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    @media (min-width: 1024px) {
+      body {
+        overflow: hidden;
+      }
+    }
+
+    .font-mono {
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-feature-settings: "liga" 0;
+      letter-spacing: -0.01em;
+    }
+
+    /* Viewport Container */
+    .slide-viewport {
+      width: 100vw;
+      min-height: 100vh;
+      display: block;
+      position: relative;
+      padding-top: 4.25rem;
+      padding-bottom: 6.5rem;
+    }
+
+    @media (min-width: 1024px) {
+      .slide-viewport {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 4.5rem;
+        padding-bottom: 5rem;
+      }
+    }
+
+    .slide {
+      width: 100%;
+      max-width: 1440px;
+      padding: 1rem 1rem 2.5rem 1rem;
+      display: none;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    @media (min-width: 768px) {
+      .slide {
+        padding: 1.75rem 2.5rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .slide {
+        position: absolute;
+        height: calc(100vh - 9.5rem);
+        max-height: 880px;
+        padding: 1.5rem 4rem;
+        overflow-y: auto;
+        justify-content: space-between;
+        transform: scale(0.98) translateY(10px);
+        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+    }
+
+    .slide.active {
+      display: flex;
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    .glass-box {
+      background: rgba(18, 18, 24, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+    }
+
+    .glass-highlight {
+      background: linear-gradient(135deg, rgba(244, 63, 94, 0.15), rgba(244, 63, 94, 0.03));
+      border: 1px solid rgba(244, 63, 94, 0.35);
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #fb7185, #f43f5e, #fb923c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gradient-gold {
+      background: linear-gradient(135deg, #fde047, #eab308, #ca8a04);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Touch-friendly range sliders */
+    input[type=range] {
+      height: 8px;
+      border-radius: 9999px;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      height: 24px;
+      width: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      -webkit-appearance: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+
+    @keyframes pulse-wave {
+      0%, 100% { height: 6px; }
+      50% { height: 26px; }
+    }
+    .waveform-bar {
+      animation: pulse-wave 1.1s ease-in-out infinite;
+    }
+
+    /* Print slide deck */
+    @media print {
+      body {
+        overflow: visible !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+      }
+      .no-print, .slide-nav, .top-bar, #slide-menu-modal {
+        display: none !important;
+      }
+      .slide-viewport {
+        height: auto !important;
+        min-height: auto !important;
+        display: block !important;
+        padding: 0 !important;
+      }
+      .slide {
+        position: relative !important;
+        display: flex !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        opacity: 1 !important;
+        transform: none !important;
+        width: 100% !important;
+        height: 100vh !important;
+        max-height: none !important;
+        padding: 2rem !important;
+        background: #ffffff !important;
+        color: #18181b !important;
+      }
+      .glass-box {
+        background: #f8fafc !important;
+        border: 1px solid #cbd5e1 !important;
+        color: #0f172a !important;
+        box-shadow: none !important;
+      }
+      .text-white {
+        color: #09090b !important;
+      }
+      .text-zinc-400, .text-zinc-300, .text-zinc-500 {
+        color: #475569 !important;
+      }
+    }
+  </style>
+</head>
+<body class="selection:bg-rose-500 selection:text-white">
+
+  <!-- ==========================================
+       TOP GLOBAL BAR (Responsive & Mobile-Clean)
+       ========================================== -->
+  <div class="top-bar fixed top-0 left-0 right-0 z-50 px-3 sm:px-8 py-2.5 sm:py-3.5 flex items-center justify-between bg-zinc-950/85 backdrop-blur-xl border-b border-zinc-800/80">
+    <div class="flex items-center gap-2.5">
+      <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-rose-600 via-rose-500 to-pink-500 p-0.5 shadow-lg shadow-rose-600/30 shrink-0 flex items-center justify-center overflow-hidden">
+        <img src="../public/icon-192.png" 
+             onerror="if(!this.dataset.t1){this.dataset.t1=1;this.src='/icon-192.png';}else if(!this.dataset.t2){this.dataset.t2=1;this.src='icon-192.png';}else if(!this.dataset.t3){this.dataset.t3=1;this.src='../public/icon.png';}else if(!this.dataset.t4){this.dataset.t4=1;this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 128 128\'><rect width=\'128\' height=\'128\' rx=\'28\' fill=\'%23e11d48\'/><circle cx=\'64\' cy=\'64\' r=\'24\' fill=\'none\' stroke=\'%23ffffff\' stroke-width=\'9\'/><path d=\'M40 74c0 16 24 24 24 24s24-8 24-24c0-10-9-16-16-16-5 0-8 2-8 2-2-11-4-12-12-12-9 0-12 8-12 16z\' fill=\'%23ffffff\' opacity=\'0.75\'/></svg>';}" 
+             alt="Koimilo Logo" 
+             class="w-full h-full rounded-[10px] object-cover" />
+      </div>
+      <div>
+        <span class="font-extrabold tracking-tight text-white text-sm sm:text-base">KOIMILO</span>
+        <span class="hidden sm:inline-block text-[10px] font-mono text-zinc-500 ml-2 tracking-widest uppercase">Investor Deck</span>
+      </div>
+    </div>
+
+    <!-- Slide Indicators -->
+    <div class="flex items-center gap-1.5 bg-zinc-900/90 px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-full border border-zinc-800">
+      <span id="current-slide-num" class="font-mono text-xs font-bold text-rose-400">01</span>
+      <span class="text-zinc-600 font-mono text-xs">/</span>
+      <span id="total-slides-num" class="font-mono text-xs text-zinc-500">10</span>
+      <div class="w-12 sm:w-20 h-1.5 bg-zinc-800 rounded-full ml-1.5 sm:ml-2.5 overflow-hidden">
+        <div id="progress-bar" class="h-full bg-rose-500 transition-all duration-300 w-[10%]"></div>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-1.5 sm:gap-2.5">
+      <button onclick="toggleSlideMenu()" class="text-xs font-semibold px-2.5 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-700 transition flex items-center gap-1" title="Jump to Slide">
+        <span>📑</span> <span class="hidden md:inline">Index</span>
+      </button>
+      <button onclick="window.print()" class="text-xs font-semibold px-2.5 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-700 transition flex items-center gap-1">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+        <span class="hidden sm:inline">PDF</span>
+      </button>
+      <button onclick="toggleFullscreen()" class="text-xs font-semibold px-2.5 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-500 text-white transition shadow-lg shadow-rose-600/30">
+        ⛶
+      </button>
+    </div>
+  </div>
+
+  <!-- SLIDE JUMP QUICK MODAL (Mobile & Desktop) -->
+  <div id="slide-menu-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5 max-w-md w-full max-h-[85vh] overflow-y-auto space-y-3">
+      <div class="flex items-center justify-between pb-3 border-b border-zinc-800">
+        <h3 class="font-bold text-white text-base">Select Slide</h3>
+        <button onclick="toggleSlideMenu()" class="w-8 h-8 rounded-full bg-zinc-800 text-zinc-400 hover:text-white flex items-center justify-center text-sm font-bold">✕</button>
+      </div>
+      <div class="space-y-1.5" id="slide-jump-list">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SLIDES VIEWPORT (Touch Swipable)
+       ========================================== -->
+  <div class="slide-viewport">
+
+    <!-- ==========================================
+         SLIDE 1: COVER & ELEVATOR THESIS
+         ========================================== -->
+    <section class="slide active" id="slide-1">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center my-auto">
+        <!-- Left: Text & Thesis -->
+        <div class="lg:col-span-7 space-y-3 sm:space-y-4">
+          <!-- Koimilo Official Logo & Brand Header -->
+          <div class="flex items-center gap-3 sm:gap-4 pb-0.5">
+            <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-tr from-rose-600 via-rose-500 to-pink-500 p-1 shadow-xl shadow-rose-600/40 shrink-0 flex items-center justify-center">
+              <img src="../public/icon-192.png" 
+                   onerror="if(!this.dataset.t1){this.dataset.t1=1;this.src='/icon-192.png';}else if(!this.dataset.t2){this.dataset.t2=1;this.src='icon-192.png';}else if(!this.dataset.t3){this.dataset.t3=1;this.src='../public/icon.png';}else if(!this.dataset.t4){this.dataset.t4=1;this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 128 128\'><rect width=\'128\' height=\'128\' rx=\'28\' fill=\'%23e11d48\'/><circle cx=\'64\' cy=\'64\' r=\'24\' fill=\'none\' stroke=\'%23ffffff\' stroke-width=\'9\'/><path d=\'M40 74c0 16 24 24 24 24s24-8 24-24c0-10-9-16-16-16-5 0-8 2-8 2-2-11-4-12-12-12-9 0-12 8-12 16z\' fill=\'%23ffffff\' opacity=\'0.75\'/></svg>';}" 
+                   alt="Koimilo Logo" 
+                   class="w-full h-full rounded-xl object-cover" />
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white font-mono">KOIMILO</span>
+                <span class="text-[10px] sm:text-xs font-mono uppercase px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/40 font-bold">Campus Social</span>
+              </div>
+              <p class="text-[11px] sm:text-xs text-zinc-400 font-medium tracking-wide">Match • Anonymous Crush • Agora In-App Audio • ₹99 UPI Sachet</p>
+            </div>
+          </div>
+
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-400 font-mono text-[11px] sm:text-xs font-semibold tracking-wider uppercase">
+            <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+            CONFIDENTIAL INVESTOR PRESENTATION • SEED ROUND
+          </div>
+          <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
+            Monetizing the <span class="gradient-text">Emotional Insecurity</span> of 43 Million Indian College Students.
+          </h1>
+          <p class="text-xs sm:text-sm md:text-base text-zinc-300 leading-relaxed">
+            Foreign giants (Tinder, Bumble) bleed money in India because cold swiping brings public hostel humiliation and privacy risks. 
+            <strong class="text-white font-semibold">Koimilo</strong> replaces cold swipes with anonymous campus confessions, breaks the <em>"Friend Zone"</em> trap, protects female privacy with in-app Agora VoIP, and monetizes via ₹99 UPI micro-sachets.
+          </p>
+
+          <!-- Key Pilot Proof Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
+            <div class="glass-box p-3 rounded-xl border-l-2 border-rose-500">
+              <p class="text-[9px] uppercase font-mono tracking-widest text-zinc-400">Pilot Ad Spend</p>
+              <p class="text-xl sm:text-2xl font-black text-rose-400 mt-0.5">₹2,000</p>
+              <p class="text-[10px] text-zinc-400">Lean proof test</p>
+            </div>
+            <div class="glass-box p-3 rounded-xl border-l-2 border-emerald-500">
+              <p class="text-[9px] uppercase font-mono tracking-widest text-zinc-400">Acquired</p>
+              <p class="text-xl sm:text-2xl font-black text-white mt-0.5">100+ Real</p>
+              <p class="text-[10px] text-emerald-400">Verified profiles</p>
+            </div>
+            <div class="glass-box p-3 rounded-xl border-l-2 border-amber-500">
+              <p class="text-[9px] uppercase font-mono tracking-widest text-zinc-400">Proven CAC</p>
+              <p class="text-xl sm:text-2xl font-black text-amber-400 mt-0.5">₹18–20</p>
+              <p class="text-[10px] text-zinc-400">20x below industry</p>
+            </div>
+            <div class="glass-box p-3 rounded-xl border-l-2 border-indigo-500">
+              <p class="text-[9px] uppercase font-mono tracking-widest text-zinc-400">Gross Margin</p>
+              <p class="text-xl sm:text-2xl font-black text-indigo-400 mt-0.5">88%+</p>
+              <p class="text-[10px] text-zinc-400">Pure software unit</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Sleek Realistic Phone Mockup (Clean & Unblocked) -->
+        <div class="lg:col-span-5 flex justify-center py-2 sm:py-0">
+          <div class="relative w-full max-w-[270px] sm:max-w-[310px]">
+            
+            <!-- External Floating Badges (3D Layering without covering screen) -->
+            <div class="absolute -top-3 -right-2 sm:-right-4 bg-zinc-900/95 border border-rose-500/40 px-3 py-1.5 rounded-xl shadow-2xl backdrop-blur-md flex items-center gap-2 z-20">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              <div>
+                <p class="text-[11px] font-bold text-white leading-tight">Live Production App</p>
+                <p class="text-[9px] text-rose-400 font-mono">Bhilai & Durg • BIT, Rungta, IIT</p>
+              </div>
+            </div>
+
+            <div class="absolute -bottom-3 -left-2 sm:-left-4 bg-zinc-900/95 border border-emerald-500/40 px-3 py-1.5 rounded-xl shadow-2xl backdrop-blur-md flex items-center gap-1.5 z-20">
+              <span class="text-xs">📍</span>
+              <span class="text-[10px] font-mono text-zinc-300">Padmanabhpur • 450m</span>
+              <span class="text-[9px] font-bold text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded">Verified ID</span>
+            </div>
+
+            <!-- Realistic Smartphone Frame -->
+            <div class="bg-zinc-900 border border-zinc-700/80 rounded-[38px] p-2 sm:p-2.5 shadow-2xl shadow-rose-950/40 ring-1 ring-white/10 relative">
+              <!-- Top Dynamic Island Notch -->
+              <div class="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-3.5 bg-black rounded-full z-10 flex items-center justify-end pr-2">
+                <div class="w-2 h-2 rounded-full bg-zinc-800"></div>
+              </div>
+              
+              <!-- Clean Screenshot Display (Unblocked) -->
+              <div class="rounded-[30px] overflow-hidden border border-zinc-900 bg-zinc-950">
+                <img src="../public/screenshots/real-mobile-app.png" onerror="if(!this.dataset.t1){this.dataset.t1=1;this.src='/screenshots/real-mobile-app.png';}else if(!this.dataset.t2){this.dataset.t2=1;this.src='screenshots/real-mobile-app.png';}else if(!this.dataset.t3){this.dataset.t3=1;this.src='../public/screenshots/screenshot-mobile-1.png';}" alt="Koimilo Production Mobile App" class="w-full h-auto object-cover block" />
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="text-center text-[11px] text-zinc-500 pt-3 hidden lg:block font-mono">
+        Koimilo Seed Round • Confidential Venture Deck
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 2: THE "FRIEND ZONE" TRAUMA & MALE INSECURITY
+         ========================================== -->
+    <section class="slide" id="slide-2">
+      <div>
+        <span class="text-xs font-mono font-bold text-rose-500 uppercase tracking-widest">Student Psychology Breakdown #1</span>
+        <h2 class="text-xl sm:text-3xl lg:text-4xl font-black text-white mt-0.5 sm:mt-1">The "Friend Zone" Trauma & Male Campus Insecurity</h2>
+        <p class="text-zinc-400 text-xs sm:text-sm mt-1 max-w-3xl">In Western colleges, dating is casual and isolated. In Indian colleges, social circles are hyper-compressed. A single public rejection causes permanent social damage.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 my-auto items-center">
+        <!-- Left: Clean Atmospheric Campus Photo (Visible & Unobscured) -->
+        <div class="lg:col-span-5 rounded-2xl overflow-hidden glass-box border border-zinc-800 shadow-xl">
+          <div class="relative h-44 sm:h-52 lg:h-64 w-full">
+            <img src="../public/story-templates/template-twilight.webp" onerror="if(!this.dataset.t1){this.dataset.t1=1;this.src='/story-templates/template-twilight.webp';}else if(!this.dataset.t2){this.dataset.t2=1;this.src='story-templates/template-twilight.webp';}" alt="Campus Evening Atmosphere" class="w-full h-full object-cover filter contrast-105" />
+            
+            <!-- Sleek Top Tag -->
+            <div class="absolute top-2.5 left-2.5 bg-zinc-950/80 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10 flex items-center gap-1.5">
+              <span class="text-rose-400 text-xs">☕</span>
+              <span class="text-[10px] font-mono text-zinc-300 font-semibold">Campus Evening • Canteen Reality</span>
+            </div>
+
+            <!-- Single Punchy Bottom Caption -->
+            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-transparent p-3 pt-6 text-left">
+              <p class="text-xs text-white font-medium italic">"Bro, she turned you down in the canteen... now the entire hostel batch is making memes."</p>
+              <span class="text-[10px] text-red-400 font-mono mt-0.5 block font-semibold">Tinder/Bumble Risk: Permanent Social Stigma</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: 3 Clear Psychological Cards -->
+        <div class="lg:col-span-7 space-y-3">
+          <div class="glass-box p-3.5 sm:p-4 rounded-2xl border-l-4 border-rose-500">
+            <h3 class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+              <span class="text-base sm:text-lg">🤐</span> The Public Rejection Terror
+            </h3>
+            <p class="text-xs text-zinc-300 mt-1 leading-relaxed">
+              If an Indian male student directly approaches a girl in class or canteen, <strong>the entire hostel and branch knows within 30 minutes</strong>. He faces relentless teasing, hostel memes, and permanent social embarrassment.
+            </p>
+          </div>
+
+          <div class="glass-box p-3.5 sm:p-4 rounded-2xl border-l-4 border-amber-500">
+            <h3 class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+              <span class="text-base sm:text-lg">🪤</span> The Perpetual "Friend Zone" Trap
+            </h3>
+            <p class="text-xs text-zinc-300 mt-1 leading-relaxed">
+              To avoid public humiliation, guys disguise romantic intent as friendship. They become assignment helpers, canteen treat sponsors, and emotional sponges—<strong>getting permanently trapped in the friend zone</strong> with zero romantic progression.
+            </p>
+          </div>
+
+          <div class="glass-highlight p-3.5 sm:p-4 rounded-2xl">
+            <h3 class="text-sm sm:text-base font-bold text-rose-300 flex items-center gap-2">
+              <span class="text-base sm:text-lg">🎯</span> Why Koimilo Unlocks Willingness-to-Pay (WTP)
+            </h3>
+            <p class="text-xs text-zinc-200 mt-1 leading-relaxed">
+              Guys don't pay for matches; <strong>they pay to eliminate the terror of social embarrassment</strong>. Koimilo’s Double-Blind Secret Crush removes 100% of the rejection risk, unlocking an unprecedented <strong>9.4/10 Willingness-To-Pay</strong> index.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2.5 sm:p-3 rounded-xl bg-zinc-900 border border-zinc-800 text-xs text-zinc-400 flex flex-wrap items-center justify-between gap-1.5">
+        <span>💡 <strong>Psychological Insight:</strong> Eliminate social stigma, and conversion becomes natural and friction-free.</span>
+        <span class="font-mono text-rose-400 font-semibold text-[11px]">Seed Diligence Verified</span>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 3: FEMALE REPUTATION & THE WHATSAPP SHIELD
+         ========================================== -->
+    <section class="slide" id="slide-3">
+      <div>
+        <span class="text-xs font-mono font-bold text-indigo-400 uppercase tracking-widest">Student Psychology Breakdown #2</span>
+        <h2 class="text-xl sm:text-3xl lg:text-4xl font-black text-white mt-0.5 sm:mt-1">The Female Dilemma: Character Certificate Fear</h2>
+        <p class="text-zinc-400 text-xs sm:text-sm mt-1 max-w-3xl">Why Indian college women refuse to upload real photos on Tinder and Bumble—and how Koimilo creates an impenetrable trust fortress.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 my-auto items-center">
+        <!-- Left: Verified Profile + Agora Call Audio Simulator -->
+        <div class="lg:col-span-5 glass-box p-4 sm:p-5 rounded-3xl border border-emerald-500/30 bg-emerald-950/10 space-y-3">
+          <div class="flex items-center gap-3">
+            <div class="relative">
+              <img src="../public/profiles/neha.jpg" onerror="if(!this.dataset.t1){this.dataset.t1=1;this.src='/profiles/neha.jpg';}else if(!this.dataset.t2){this.dataset.t2=1;this.src='profiles/neha.jpg';}else if(!this.dataset.t3){this.dataset.t3=1;this.src='../public/profiles/simran-real.png';}" alt="Verified Profile" class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl object-cover border-2 border-emerald-400 shadow-lg" />
+              <span class="absolute -bottom-1 -right-1 bg-emerald-500 text-black text-[9px] font-black px-1.5 py-0.2 rounded-full">ID ✓</span>
+            </div>
+            <div>
+              <p class="font-bold text-white text-sm sm:text-base">Neha, 21</p>
+              <p class="text-xs text-zinc-400 font-mono">B.Tech CS • BIT Durg</p>
+              <span class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full">Reputation Shield Active</span>
+            </div>
+          </div>
+
+          <!-- Interactive Agora VoIP Audio Card -->
+          <div class="bg-zinc-950 p-3 rounded-2xl border border-zinc-800 space-y-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="text-zinc-400 font-mono flex items-center gap-1.5 text-[11px]">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                In-App Agora VoIP Audio
+              </span>
+              <span class="text-emerald-400 font-mono font-bold text-xs">02:14</span>
+            </div>
+
+            <!-- Pulsing Waveform -->
+            <div class="flex items-center justify-center gap-1 h-7 bg-zinc-900/60 rounded-xl px-4">
+              <div class="w-1 bg-rose-500 rounded-full waveform-bar" style="animation-delay: 0.1s"></div>
+              <div class="w-1 bg-rose-400 rounded-full waveform-bar" style="animation-delay: 0.3s"></div>
+              <div class="w-1 bg-amber-400 rounded-full waveform-bar" style="animation-delay: 0.2s"></div>
+              <div class="w-1 bg-emerald-400 rounded-full waveform-bar" style="animation-delay: 0.4s"></div>
+              <div class="w-1 bg-indigo-400 rounded-full waveform-bar" style="animation-delay: 0.15s"></div>
+              <div class="w-1 bg-rose-500 rounded-full waveform-bar" style="animation-delay: 0.35s"></div>
+            </div>
+
+            <div class="p-1.5 rounded-xl bg-emerald-950/40 border border-emerald-500/20 text-center">
+              <p class="text-[10px] text-emerald-300 font-medium">🔒 100% Zero Phone Number / WhatsApp Leaked</p>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between text-[11px] text-zinc-400 pt-0.5">
+            <span>🔥 5-Sec Self-Destruct Media</span>
+            <span class="text-rose-400 font-bold">Screenshot-Protected</span>
+          </div>
+        </div>
+
+        <!-- Right: Tinder Failure vs Koimilo Solution -->
+        <div class="lg:col-span-7 space-y-3">
+          <div class="glass-box p-3.5 sm:p-4 rounded-2xl border border-red-500/30">
+            <h3 class="text-xs sm:text-sm font-bold text-red-400 flex items-center gap-2 mb-1.5">
+              <span>✕</span> Why 84% of Female College Students Delete Tinder
+            </h3>
+            <ul class="text-xs text-zinc-300 space-y-1.5 leading-relaxed">
+              <li>• <strong>Hostel WhatsApp Group Doxxing:</strong> Profiles get screenshotted and shared across campus hostel groups ("Dekho ye Tinder pe hai").</li>
+              <li>• <strong>Truecaller & WhatsApp Stalking:</strong> Tinder forces an off-platform WhatsApp exchange, instantly exposing family names, home DPs, and Truecaller tags.</li>
+              <li>• <strong>90:10 Creep Ratio:</strong> Unfiltered spam from 500 random accounts per week leads to immediate app deletion within 48 hours.</li>
+            </ul>
+          </div>
+
+          <div class="glass-box p-3.5 sm:p-4 rounded-2xl border border-emerald-500/30 bg-emerald-950/10">
+            <h3 class="text-xs sm:text-sm font-bold text-emerald-400 flex items-center gap-2 mb-1.5">
+              <span>✓</span> Koimilo's Female Defense Architecture
+            </h3>
+            <ul class="text-xs text-zinc-200 space-y-1.5 leading-relaxed">
+              <li>• <strong>In-App Agora VoIP:</strong> Female students voice-verify matches inside Koimilo with 1-tap disconnect and zero personal contact leakage.</li>
+              <li>• <strong>5-Chat Anti-Creep Slot Cap:</strong> Guys cannot hoard or blast 100 girls at once. They must actively converse or free up their limited slot.</li>
+              <li>• <strong>Female Retention:</strong> <strong>3.2x higher than Tinder</strong> across the Bhilai trial cohort.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2.5 sm:p-3 rounded-xl bg-zinc-900 border border-zinc-800 text-xs text-zinc-400 flex items-center justify-between">
+        <span>🏆 <strong>The Strategic Moat:</strong> Solve female safety in Tier-2/3 India, and male users and revenue naturally follow.</span>
+        <span class="text-emerald-400 font-bold font-mono text-[11px]">Defensible Trust Moat</span>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 4: WHY TINDER & BUMBLE ARE CULTURALLY FLAWED
+         ========================================== -->
+    <section class="slide" id="slide-4">
+      <!-- Slide Header -->
+      <div class="space-y-1">
+        <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider">
+          <span>⚡</span> Market Dysfunction & Product Void
+        </div>
+        <h2 class="text-xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">Why Foreign Giants Bleed Money in Bharat</h2>
+        <p class="text-zinc-400 text-xs sm:text-sm max-w-3xl leading-relaxed">Silicon Valley dating mechanics fail when exported to Tier-2/3 Indian youth without deep cultural localization.</p>
+      </div>
+
+      <!-- Top Showdown Metrics: 3 High-Impact Bento Pills -->
+      <div class="grid grid-cols-3 gap-2 sm:gap-4 my-2 sm:my-3">
+        <div class="glass-box p-2.5 sm:p-3.5 rounded-2xl border-l-4 border-rose-500 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-[9px] sm:text-[10px] font-mono uppercase text-zinc-400">CAC Burn</span>
+              <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-500/20 text-rose-300">47x Moat</span>
+            </div>
+            <div class="flex items-baseline gap-1 mt-1">
+              <span class="text-base sm:text-2xl font-black text-emerald-400 font-mono">₹18</span>
+              <span class="text-[10px] text-zinc-500 line-through">₹850+</span>
+            </div>
+          </div>
+          <p class="text-[10px] sm:text-xs text-zinc-300 font-medium mt-1">Confessions vs Meta Ad Burn</p>
+        </div>
+
+        <div class="glass-box p-2.5 sm:p-3.5 rounded-2xl border-l-4 border-amber-500 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-[9px] sm:text-[10px] font-mono uppercase text-zinc-400">Pay Reach</span>
+              <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300">15x Unlock</span>
+            </div>
+            <div class="flex items-baseline gap-1 mt-1">
+              <span class="text-base sm:text-2xl font-black text-amber-400 font-mono">₹99</span>
+              <span class="text-[10px] text-zinc-500 line-through">₹1,499</span>
+            </div>
+          </div>
+          <p class="text-[10px] sm:text-xs text-zinc-300 font-medium mt-1">UPI Sachet vs Credit Card</p>
+        </div>
+
+        <div class="glass-box p-2.5 sm:p-3.5 rounded-2xl border-l-4 border-indigo-500 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-[9px] sm:text-[10px] font-mono uppercase text-zinc-400">Female Trust</span>
+              <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-indigo-500/20 text-indigo-300">3.2x Stay</span>
+            </div>
+            <div class="flex items-baseline gap-1 mt-1">
+              <span class="text-base sm:text-2xl font-black text-indigo-400 font-mono">0%</span>
+              <span class="text-[10px] text-zinc-500">Doxxing</span>
+            </div>
+          </div>
+          <p class="text-[10px] sm:text-xs text-zinc-300 font-medium mt-1">Agora VoIP vs WhatsApp Leak</p>
+        </div>
+      </div>
+
+      <!-- Main Comparison Arena: Mobile Stacked Bento Cards & Desktop Table -->
+      <div class="space-y-2 sm:space-y-3">
+        
+        <!-- Desktop Comparison Table -->
+        <div class="hidden md:block overflow-x-auto">
+          <table class="w-full text-left border-collapse glass-box rounded-2xl overflow-hidden">
+            <thead>
+              <tr class="border-b border-zinc-800 bg-zinc-900/80 text-zinc-400 text-[11px] uppercase font-mono">
+                <th class="p-3 w-1/4">Dating Dimension</th>
+                <th class="p-3 w-3/8 text-red-400">✕ Foreign Giants (Tinder / Bumble)</th>
+                <th class="p-3 w-3/8 text-emerald-400">✓ Koimilo (Engineered for Bharat)</th>
+              </tr>
+            </thead>
+            <tbody class="text-xs divide-y divide-zinc-800/60 text-zinc-300">
+              <tr>
+                <td class="p-3 font-bold text-white flex items-center gap-2">
+                  <span>💳</span> Payment Architecture
+                </td>
+                <td class="p-3 text-zinc-400">
+                  <div class="flex items-start gap-1.5">
+                    <span class="text-red-400 font-bold">✕</span>
+                    <span>₹1,499–₹2,499/mo Credit Card auto-debit. <strong>94% of students don't own a credit card</strong>; RBI recurring mandate friction causes abandonment.</span>
+                  </div>
+                </td>
+                <td class="p-3 text-emerald-300 font-semibold bg-emerald-950/10">
+                  <div class="flex items-start gap-1.5">
+                    <span class="text-emerald-400 font-bold">✓</span>
+                    <span>₹99/week & ₹149/mo UPI micro-passes via PhonePe/GPay. <strong>100% student wallet penetration</strong>; zero recurring commitment fear.</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-white flex items-center gap-2">
+                  <span>🤫</span> Campus Acquisition Hook
+                </td>
+                <td class="p-3 text-zinc-400">
+                  <div class="flex items-start gap-1.5">
+                    <span class="text-red-400 font-bold">✕</span>
+                    <span>Cold 2-second swipe on party photos. Creates immediate hostel stigma and shame (<em>"Dekho ye Tinder pe hai"</em>).</span>
+                  </div>
+                </td>
+                <td class="p-3 text-emerald-300 font-semibold bg-emerald-950/10">
+                  <div class="flex items-start gap-1.5">
+                    <span class="text-emerald-400 font-bold">✓</span>
+                    <span>Anonymous Campus Crush Confessions & Banter. Zero public shame, high hostel WhatsApp virality (K-factor > 1.25).</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-white flex items-center gap-2">
+                  <span>📍</span> Geographic Density
+                </td>
+                <td class="p-3 text-zinc-400">
+                  <div class="flex items-start gap-1.5">
+                    <span class="text-red-400 font-bold">✕</span>
+                    <span>GPS matches users 60–80 km away in distant cities (e.g. matching Bhilai with Raipur). Zero real offline meetups.</span>
+                  </div>
+                </td>
+                <td class="p-3 text-emerald-300 font-semibold bg-emerald-950/10">
+                  <div class="flex items-start gap-1.5">
+                    <span class="text-emerald-400 font-bold">✓</span>
+                    <span>Hyper-local campus cluster radius (BIT Durg, Rungta, IIT Bhilai). Walking distance (5–15 min) campus cafe / library meetups.</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-white flex items-center gap-2">
+                  <span>🔒</span> Female Identity Safety
+                </td>
+                <td class="p-3 text-zinc-400">
+                  <div class="flex items-start gap-1.5">
+                    <span class="text-red-400 font-bold">✕</span>
+                    <span>Forces WhatsApp/Insta exchange to hear voice or chat, leaking private phone numbers, Truecaller tags, and family DPs.</span>
+                  </div>
+                </td>
+                <td class="p-3 text-emerald-300 font-semibold bg-emerald-950/10">
+                  <div class="flex items-start gap-1.5">
+                    <span class="text-emerald-400 font-bold">✓</span>
+                    <span>In-app Agora voice/video calling + 5-sec ephemeral media. 100% zero phone number or WhatsApp leakage.</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-white flex items-center gap-2">
+                  <span>📊</span> Acquisition Economics (CAC)
+                </td>
+                <td class="p-3 text-red-400 font-bold">
+                  <div class="flex items-start gap-1.5">
+                    <span class="text-red-400 font-bold">✕</span>
+                    <span>₹450 – ₹1,200 per user burned on Google/Meta ads. High CAC combined with rapid female churn bleeds venture capital.</span>
+                  </div>
+                </td>
+                <td class="p-3 text-emerald-400 font-bold bg-emerald-950/20">
+                  <div class="flex items-start gap-1.5">
+                    <span class="text-emerald-400 font-bold">✓</span>
+                    <span>₹18 – ₹20 CAC validated in Bhilai pilot through organic hostel referrals and campus ambassador ground blitz.</span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Mobile Head-to-Head Comparison Showdown (Rich, Beautiful & Space-Filled) -->
+        <div class="space-y-2 md:hidden">
+          
+          <!-- Card 1: Payment Method -->
+          <div class="glass-box p-3 rounded-2xl border border-zinc-800 space-y-2">
+            <div class="flex items-center justify-between pb-1.5 border-b border-zinc-800/80">
+              <span class="text-xs font-bold text-white flex items-center gap-1.5">
+                <span>💳</span> Payment Architecture
+              </span>
+              <span class="text-[9px] font-mono uppercase px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 font-bold">100% Wallet Reach</span>
+            </div>
+            <div class="space-y-1.5 text-xs">
+              <div class="p-2 rounded-xl bg-red-950/20 border border-red-500/20 flex items-start gap-2">
+                <span class="text-red-400 font-black text-xs">✕</span>
+                <div>
+                  <p class="font-bold text-red-400">Tinder: ₹1,500/mo Credit Card</p>
+                  <p class="text-[11px] text-zinc-400 leading-tight">94% Indian students have no credit card; auto-debit friction.</p>
+                </div>
+              </div>
+              <div class="p-2 rounded-xl bg-emerald-950/20 border border-emerald-500/30 flex items-start gap-2">
+                <span class="text-emerald-400 font-black text-xs">✓</span>
+                <div>
+                  <p class="font-bold text-emerald-400">Koimilo: ₹99 UPI Micro-Pass</p>
+                  <p class="text-[11px] text-zinc-200 leading-tight">1-click PhonePe/GPay sachet; zero recurring friction.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Campus Stigma & Virality -->
+          <div class="glass-box p-3 rounded-2xl border border-zinc-800 space-y-2">
+            <div class="flex items-center justify-between pb-1.5 border-b border-zinc-800/80">
+              <span class="text-xs font-bold text-white flex items-center gap-1.5">
+                <span>🤫</span> Campus Acquisition Hook
+              </span>
+              <span class="text-[9px] font-mono uppercase px-2 py-0.5 rounded-full bg-rose-500/10 text-rose-400 font-bold">K > 1.25 Viral Loop</span>
+            </div>
+            <div class="space-y-1.5 text-xs">
+              <div class="p-2 rounded-xl bg-red-950/20 border border-red-500/20 flex items-start gap-2">
+                <span class="text-red-400 font-black text-xs">✕</span>
+                <div>
+                  <p class="font-bold text-red-400">Tinder: Cold Photo Swipes</p>
+                  <p class="text-[11px] text-zinc-400 leading-tight">Instant hostel stigma ("Dekho ye Tinder pe hai") & shaming.</p>
+                </div>
+              </div>
+              <div class="p-2 rounded-xl bg-rose-950/20 border border-rose-500/30 flex items-start gap-2">
+                <span class="text-rose-400 font-black text-xs">✓</span>
+                <div>
+                  <p class="font-bold text-rose-300">Koimilo: Anonymous Campus Confessions</p>
+                  <p class="text-[11px] text-zinc-200 leading-tight">Zero public shame, hostel WhatsApp shares drive organic peer growth.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Density & Meetups -->
+          <div class="glass-box p-3 rounded-2xl border border-zinc-800 space-y-2">
+            <div class="flex items-center justify-between pb-1.5 border-b border-zinc-800/80">
+              <span class="text-xs font-bold text-white flex items-center gap-1.5">
+                <span>📍</span> Proximity & Meetup Density
+              </span>
+              <span class="text-[9px] font-mono uppercase px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 font-bold">5–15 Min Radius</span>
+            </div>
+            <div class="space-y-1.5 text-xs">
+              <div class="p-2 rounded-xl bg-red-950/20 border border-red-500/20 flex items-start gap-2">
+                <span class="text-red-400 font-black text-xs">✕</span>
+                <div>
+                  <p class="font-bold text-red-400">Tinder: 60–80 km Distant City Matches</p>
+                  <p class="text-[11px] text-zinc-400 leading-tight">Empty chats with zero physical meetups; high user drop-off.</p>
+                </div>
+              </div>
+              <div class="p-2 rounded-xl bg-indigo-950/20 border border-indigo-500/30 flex items-start gap-2">
+                <span class="text-indigo-400 font-black text-xs">✓</span>
+                <div>
+                  <p class="font-bold text-indigo-300">Koimilo: Hyper-Local Campus Clusters</p>
+                  <p class="text-[11px] text-zinc-200 leading-tight">Walking distance to campus cafe/canteen (BIT, Rungta, IIT).</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: CAC & Female Safety -->
+          <div class="glass-box p-3 rounded-2xl border border-zinc-800 space-y-2">
+            <div class="flex items-center justify-between pb-1.5 border-b border-zinc-800/80">
+              <span class="text-xs font-bold text-white flex items-center gap-1.5">
+                <span>🔒</span> Female Safety & CAC
+              </span>
+              <span class="text-[9px] font-mono uppercase px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 font-bold">₹18 CAC Proof</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div class="p-2 rounded-xl bg-red-950/20 border border-red-500/20">
+                <p class="text-[10px] text-red-400 uppercase font-mono font-bold">Tinder Foreign Model</p>
+                <p class="text-sm font-black text-red-400 mt-0.5">₹450–₹1,200</p>
+                <p class="text-[10px] text-zinc-400 leading-tight mt-0.5">Meta ad burn + WhatsApp contact leakage</p>
+              </div>
+              <div class="p-2 rounded-xl bg-emerald-950/20 border border-emerald-500/30">
+                <p class="text-[10px] text-emerald-400 uppercase font-mono font-bold">Koimilo Bharat Model</p>
+                <p class="text-sm font-black text-emerald-400 mt-0.5">₹18–₹20 CAC</p>
+                <p class="text-[10px] text-zinc-300 leading-tight mt-0.5">Agora VoIP + 100% zero contact leakage</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Match Group Q3 Proof Banner -->
+        <div class="p-2.5 sm:p-3 rounded-2xl bg-zinc-900 border border-zinc-800 flex flex-wrap items-center justify-between gap-2 text-xs">
+          <div class="flex items-center gap-2">
+            <span class="px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 font-mono text-[10px] font-bold">NASDAQ: MTCH</span>
+            <span class="text-zinc-300 italic">"Tinder paying users in APAC fell 6% YoY due to subscription pricing resistance."</span>
+          </div>
+          <span class="text-rose-400 font-mono font-bold text-[10px] uppercase">Validated Market Vacuum</span>
+        </div>
+
+      </div>
+
+      <!-- Strategic Takeaway Footer -->
+      <div class="pt-2 flex items-center justify-between text-[11px] text-zinc-400 font-mono border-t border-zinc-800/60 mt-1">
+        <span>🏆 <strong>The Strategic Moat:</strong> Solve cultural shame & UPI micro-payments = capture Bharat.</span>
+        <span class="text-emerald-400 font-bold hidden sm:inline">Defensible Winner-Take-Most</span>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 5: THE SACHET MONETIZATION ENGINE
+         ========================================== -->
+    <section class="slide" id="slide-5">
+      <!-- Slide Header -->
+      <div class="space-y-1">
+        <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-sans text-[10px] sm:text-xs font-bold uppercase tracking-wider">
+          <span>💰</span> Monetization Architecture • 100% UPI Micro-Sachets
+        </div>
+        <h2 class="text-xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">The 4 Production Pricing Plans & UPI Sachet Engine</h2>
+        <p class="text-zinc-400 text-xs sm:text-sm max-w-3xl leading-relaxed">Engineered for Indian college pocket money (₹500–₹1,500/mo). Zero credit card barrier, 1-tap PhonePe/GPay checkout, and 0% App Store tax.</p>
+      </div>
+
+      <!-- The 4 Pricing Plans Grid (Mobile 2x2, Desktop 4 Cols) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 my-2 sm:my-3">
+        
+        <!-- Plan 1: Weekend Pass -->
+        <div class="glass-box p-3.5 sm:p-4 rounded-2xl border border-zinc-800 space-y-2 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center pb-1 border-b border-zinc-800/80">
+              <span class="text-[10px] font-bold text-zinc-400 uppercase tracking-wider font-sans">Weekend Pass</span>
+              <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-300">Impulse</span>
+            </div>
+            <div class="mt-2">
+              <div class="flex items-baseline gap-1">
+                <span class="text-2xl sm:text-3xl font-black text-white font-sans">₹49</span>
+                <span class="text-[11px] text-zinc-400 font-sans">/ 3 Days</span>
+              </div>
+              <p class="text-[11px] text-zinc-300 mt-1 leading-snug">Friday–Sunday hostel rush. Instant unlock for weekend coffee & cafe meetups.</p>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-zinc-800 text-[11px] text-zinc-400 space-y-1">
+            <p class="flex items-center gap-1.5"><span class="text-emerald-400 font-bold">✓</span> 20 Fresh Campus Profiles</p>
+            <p class="flex items-center gap-1.5"><span class="text-emerald-400 font-bold">✓</span> 5 Mins Agora Voice Call</p>
+            <p class="flex items-center gap-1.5"><span class="text-emerald-400 font-bold">✓</span> Instant PhonePe UPI</p>
+          </div>
+        </div>
+
+        <!-- Plan 2: Weekly Sachet (Core Engine) -->
+        <div class="glass-box p-3.5 sm:p-4 rounded-2xl border-2 border-rose-500 bg-rose-500/10 space-y-2 flex flex-col justify-between relative shadow-xl shadow-rose-950/30">
+          <span class="absolute -top-2.5 right-3 px-2 py-0.5 rounded-full bg-rose-600 text-white font-black text-[9px] uppercase tracking-wider shadow-md">
+            72% of Sales
+          </span>
+          <div>
+            <div class="flex justify-between items-center pb-1 border-b border-rose-500/30">
+              <span class="text-[10px] font-bold text-rose-300 uppercase tracking-wider font-sans">Weekly Sachet</span>
+              <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-rose-500/30 text-rose-200">Core Habit</span>
+            </div>
+            <div class="mt-2">
+              <div class="flex items-baseline gap-1">
+                <span class="text-2xl sm:text-3xl font-black text-rose-400 font-sans">₹99</span>
+                <span class="text-[11px] text-zinc-400 font-sans">/ 7 Days</span>
+              </div>
+              <p class="text-[11px] text-zinc-200 mt-1 leading-snug">Price of 2 canteen samosas. Unlocks core campus banter and secret crush reveals.</p>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-rose-500/30 text-[11px] text-zinc-200 space-y-1">
+            <p class="flex items-center gap-1.5"><span class="text-rose-400 font-bold">✓</span> Unlimited Secret Confessions</p>
+            <p class="flex items-center gap-1.5"><span class="text-rose-400 font-bold">✓</span> 15 Mins Daily VoIP Audio</p>
+            <p class="flex items-center gap-1.5"><span class="text-rose-400 font-bold">✓</span> See Who Upvoted Your Crush</p>
+          </div>
+        </div>
+
+        <!-- Plan 3: Monthly VIP -->
+        <div class="glass-box p-3.5 sm:p-4 rounded-2xl border border-zinc-800 space-y-2 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center pb-1 border-b border-zinc-800/80">
+              <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider font-sans">Monthly VIP</span>
+              <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300">Spotlight</span>
+            </div>
+            <div class="mt-2">
+              <div class="flex items-baseline gap-1">
+                <span class="text-2xl sm:text-3xl font-black text-amber-400 font-sans">₹149</span>
+                <span class="text-[11px] text-zinc-400 font-sans">/ 30 Days</span>
+              </div>
+              <p class="text-[11px] text-zinc-300 mt-1 leading-snug">Monthly cycle. Gold VIP crown badge placed at top of campus discovery feed.</p>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-zinc-800 text-[11px] text-zinc-400 space-y-1">
+            <p class="flex items-center gap-1.5"><span class="text-amber-400 font-bold">✓</span> Golden VIP Spotlight Placement</p>
+            <p class="flex items-center gap-1.5"><span class="text-amber-400 font-bold">✓</span> 30 Mins Daily Agora Audio</p>
+            <p class="flex items-center gap-1.5"><span class="text-amber-400 font-bold">✓</span> Unlimited Direct Chat Slots</p>
+          </div>
+        </div>
+
+        <!-- Plan 4: Semester Pass -->
+        <div class="glass-box p-3.5 sm:p-4 rounded-2xl border border-zinc-800 space-y-2 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center pb-1 border-b border-zinc-800/80">
+              <span class="text-[10px] font-bold text-indigo-400 uppercase tracking-wider font-sans">Semester Pass</span>
+              <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300">Max LTV</span>
+            </div>
+            <div class="mt-2">
+              <div class="flex items-baseline gap-1">
+                <span class="text-2xl sm:text-3xl font-black text-indigo-400 font-sans">₹399</span>
+                <span class="text-[11px] text-zinc-400 font-sans">/ 90 Days</span>
+              </div>
+              <p class="text-[11px] text-zinc-300 mt-1 leading-snug">Full college term lock. Effective ₹133/month with zero churn during final exams.</p>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-zinc-800 text-[11px] text-zinc-400 space-y-1">
+            <p class="flex items-center gap-1.5"><span class="text-indigo-400 font-bold">✓</span> 90 Days Uninterrupted Access</p>
+            <p class="flex items-center gap-1.5"><span class="text-indigo-400 font-bold">✓</span> College Fest VIP Pass</p>
+            <p class="flex items-center gap-1.5"><span class="text-indigo-400 font-bold">✓</span> Maximum Upfront Cashflow</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Real UPI Checkout Economics & Frictionless Payment Rail -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 sm:gap-4 pt-1">
+        <div class="glass-box p-3 rounded-2xl border border-zinc-800 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center text-lg shrink-0">
+            ⚡
+          </div>
+          <div>
+            <p class="text-[10px] font-bold uppercase tracking-wider text-zinc-400 font-sans">Payment Rail</p>
+            <p class="text-xs sm:text-sm font-bold text-white mt-0.5">1-Tap Cashfree UPI Intent</p>
+            <p class="text-[10px] text-emerald-400">GPay • PhonePe • Paytm • BHIM (1.8% fee)</p>
+          </div>
+        </div>
+
+        <div class="glass-box p-3 rounded-2xl border border-zinc-800 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-rose-500/20 flex items-center justify-center text-lg shrink-0">
+            🛡️
+          </div>
+          <div>
+            <p class="text-[10px] font-bold uppercase tracking-wider text-zinc-400 font-sans">App Store Cut</p>
+            <p class="text-xs sm:text-sm font-bold text-white mt-0.5">0% Apple & Google Tax</p>
+            <p class="text-[10px] text-emerald-400">PWA Direct Web Delivery (Saved 30%)</p>
+          </div>
+        </div>
+
+        <div class="glass-box p-3 rounded-2xl border border-zinc-800 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/20 flex items-center justify-center text-lg shrink-0">
+            📈
+          </div>
+          <div>
+            <p class="text-[10px] font-bold uppercase tracking-wider text-zinc-400 font-sans">Gross Contribution</p>
+            <p class="text-xs sm:text-sm font-bold text-white mt-0.5">88.2% on Every Sachet</p>
+            <p class="text-[10px] text-amber-400">Infra cost < ₹8 per paying student</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Takeaway -->
+      <div class="p-2.5 sm:p-3 rounded-xl bg-zinc-900 border border-zinc-800 text-xs text-zinc-300 flex items-center justify-between mt-1">
+        <span>💡 <strong>Monetization Thesis:</strong> Foreign apps demand ₹1,500/mo credit cards (0% college fit). Koimilo unlocks ₹49–₹99 PhonePe sachets with 72% volume.</span>
+        <span class="text-emerald-400 font-bold font-mono text-[11px] hidden sm:inline">UPI Sachet Power</span>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 6: INTERACTIVE REVENUE & PROFIT SIMULATOR
+         ========================================== -->
+    <section class="slide" id="slide-6">
+      <div class="space-y-1">
+        <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-400 font-sans text-[10px] sm:text-xs font-bold uppercase tracking-wider">
+          <span>📊</span> Financial Engine • Live Stress-Test Model
+        </div>
+        <h2 class="text-xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">Venture Unit Economics & Scale Simulator</h2>
+        <p class="text-zinc-400 text-xs sm:text-sm max-w-3xl leading-relaxed">Tweak the sliders or click preset scenarios below to stress-test our campus cluster model, projected MRR, cloud infrastructure burn, and EBITDA margins.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 my-2 sm:my-3 items-center">
+        <!-- Left: Sliders & Presets -->
+        <div class="lg:col-span-6 glass-box p-4 sm:p-5 rounded-3xl space-y-3.5">
+          <!-- Preset Buttons -->
+          <div class="flex flex-wrap items-center gap-1.5">
+            <span class="text-[10px] font-sans font-bold text-zinc-400 uppercase tracking-wider mr-1">Presets:</span>
+            <button onclick="setDeckPreset(4, 1500, 7.0)" class="text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border border-zinc-700 transition active:scale-95">
+              Bhilai Pilot
+            </button>
+            <button onclick="setDeckPreset(15, 2000, 8.5)" class="text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-rose-950/80 hover:bg-rose-900 text-rose-300 border border-rose-500/30 transition active:scale-95">
+              State Blitz (15 Hubs)
+            </button>
+            <button onclick="setDeckPreset(50, 2500, 9.0)" class="text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-amber-950/80 hover:bg-amber-900 text-amber-300 border border-amber-500/30 transition active:scale-95">
+              Pan-India (50 Hubs)
+            </button>
+          </div>
+
+          <div>
+            <div class="flex justify-between text-xs font-sans font-bold mb-1">
+              <span class="text-zinc-300">Active College Hubs (Campuses)</span>
+              <span class="text-rose-400 font-bold font-mono" id="deck-hub-val">10 Campuses</span>
+            </div>
+            <input type="range" id="deck-slider-hubs" min="2" max="50" step="1" value="10" oninput="deckRecalc()" class="w-full accent-rose-500 cursor-pointer">
+            <div class="flex justify-between text-[10px] text-zinc-500 mt-0.5">
+              <span>Bhilai-Durg (4)</span>
+              <span>Central India (20)</span>
+              <span>Pan-India (50)</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between text-xs font-sans font-bold mb-1">
+              <span class="text-zinc-300">Avg Students Per Campus</span>
+              <span class="text-amber-400 font-bold font-mono" id="deck-stud-val">2,000 Students</span>
+            </div>
+            <input type="range" id="deck-slider-stud" min="500" max="5000" step="250" value="2000" oninput="deckRecalc()" class="w-full accent-amber-500 cursor-pointer">
+            <div class="flex justify-between text-[10px] text-zinc-500 mt-0.5">
+              <span>500 (Early)</span>
+              <span>2,000 (Target)</span>
+              <span>5,000 (Mega-Campus)</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between text-xs font-sans font-bold mb-1">
+              <span class="text-zinc-300">VIP Sachet Conversion Rate (%)</span>
+              <span class="text-indigo-400 font-bold font-mono" id="deck-conv-val">7.0% Paying</span>
+            </div>
+            <input type="range" id="deck-slider-conv" min="3" max="15" step="0.5" value="7" oninput="deckRecalc()" class="w-full accent-indigo-500 cursor-pointer">
+            <div class="flex justify-between text-[10px] text-zinc-500 mt-0.5">
+              <span>3% (Conservative)</span>
+              <span>7% (Base Case)</span>
+              <span>15% (Fest Peak)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Dynamic Outputs (Clean Human Typography - No Font Monospace Bugs!) -->
+        <div class="lg:col-span-6 grid grid-cols-2 gap-3">
+          <div class="glass-box p-3.5 sm:p-4 rounded-2xl border border-zinc-800 text-center">
+            <p class="text-[10px] sm:text-[11px] font-sans font-bold uppercase tracking-wider text-zinc-400">Total Active Student Base</p>
+            <p class="text-2xl sm:text-3xl font-extrabold text-white mt-1 font-sans tracking-tight" id="deck-out-users">20,000</p>
+            <p class="text-[10px] text-zinc-400 mt-0.5">Verified college profiles</p>
+          </div>
+
+          <div class="glass-box p-3.5 sm:p-4 rounded-2xl border border-zinc-800 text-center">
+            <p class="text-[10px] sm:text-[11px] font-sans font-bold uppercase tracking-wider text-zinc-400">Monthly Subscribers</p>
+            <p class="text-2xl sm:text-3xl font-extrabold text-rose-400 mt-1 font-sans tracking-tight" id="deck-out-payers">1,400</p>
+            <p class="text-[10px] text-zinc-400 mt-0.5">Avg ARPU ₹149/mo</p>
+          </div>
+
+          <div class="glass-box p-3.5 sm:p-4 rounded-2xl border border-zinc-800 text-center">
+            <p class="text-[10px] sm:text-[11px] font-sans font-bold uppercase tracking-wider text-zinc-400">Monthly Gross (MRR)</p>
+            <p class="text-2xl sm:text-3xl font-extrabold text-emerald-400 mt-1 font-sans tracking-tight" id="deck-out-mrr">₹2.09 Lakhs</p>
+            <p class="text-[10px] text-zinc-400 mt-0.5">ARR: <strong id="deck-out-arr" class="text-zinc-200 font-sans">₹25.0 Lakhs</strong></p>
+          </div>
+
+          <div class="glass-box p-3.5 sm:p-4 rounded-2xl border border-emerald-500/30 bg-emerald-950/20 text-center">
+            <p class="text-[10px] sm:text-[11px] font-sans font-bold uppercase tracking-wider text-emerald-400">Net EBITDA Margin</p>
+            <p class="text-2xl sm:text-3xl font-extrabold text-emerald-300 mt-1 font-sans tracking-tight" id="deck-out-ebitda">92.8%</p>
+            <p class="text-[10px] text-zinc-300 mt-0.5">Infra cost <span id="deck-out-infra" class="font-bold">₹15,000</span>/mo</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Audited Operational Unit Economics Bar -->
+      <div class="p-2.5 sm:p-3 rounded-2xl bg-zinc-900 border border-zinc-800 text-xs text-zinc-300 flex flex-wrap items-center justify-between gap-2">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span><strong>Unit Economics Proof:</strong> CAC = ₹18.50 (Bhilai Ad Test) • ARPU = ₹149/mo • 3-Mo LTV = ₹447 • <strong>LTV:CAC = 24.1x</strong></span>
+        </div>
+        <span class="text-amber-400 font-sans font-bold text-[11px] bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20">Breakeven at ~1,000 Active Users</span>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 7: TRACTION & PROOF OF CONCEPT
+         ========================================== -->
+    <section class="slide" id="slide-7">
+      <div class="space-y-1">
+        <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-sans text-[10px] sm:text-xs font-bold uppercase tracking-wider">
+          <span>📈</span> Live Database Telemetry • Production Ground Proof
+        </div>
+        <h2 class="text-xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">The Bhilai Pilot: Explosive Growth on a ₹1k–₹2k Ad Test</h2>
+        <p class="text-zinc-400 text-xs sm:text-sm max-w-3xl leading-relaxed">We didn't just write a slide deck; we deployed in production across Bhilai-Durg colleges, ran a lean ₹1,000–₹2,000 ad campaign, and experienced rapid student inflow.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 my-2 sm:my-3 items-center">
+        <!-- Left: Real Production Telemetry Screenshots (Dual Stacked Cards) -->
+        <div class="lg:col-span-6 space-y-2.5">
+          <!-- Live Telemetry Card 1: Admin CRM -->
+          <div class="glass-box p-2.5 sm:p-3 rounded-2xl border border-zinc-700/80 shadow-2xl space-y-1.5">
+            <div class="flex items-center justify-between pb-1 border-b border-zinc-800">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="text-xs font-bold text-white font-sans">Koimilo Live Admin Command Center</span>
+              </div>
+              <span class="text-[9px] font-mono text-zinc-400 bg-zinc-800 px-2 py-0.5 rounded">Bhilai-Durg Cluster</span>
+            </div>
+            <div class="rounded-xl overflow-hidden border border-zinc-800 bg-zinc-950">
+              <img src="../public/screenshots/real-admin-crm.png" onerror="if(!this.dataset.t1){this.dataset.t1=1;this.src='/screenshots/real-admin-crm.png';}else if(!this.dataset.t2){this.dataset.t2=1;this.src='screenshots/real-admin-crm.png';}" alt="Koimilo Real Admin CRM" class="w-full h-auto object-cover" />
+            </div>
+            <div class="flex items-center justify-between text-[10px] text-zinc-400 pt-0.5">
+              <span><strong>190</strong> Accounts Registered</span>
+              <span class="text-emerald-400 font-bold">140 Completed Profiles (74%)</span>
+              <span><strong>4</strong> Paid VIP Conversions</span>
+            </div>
+          </div>
+
+          <!-- Live Telemetry Card 2: Daily Signups Inflow Graph -->
+          <div class="glass-box p-2.5 sm:p-3 rounded-2xl border border-zinc-700/80 shadow-2xl space-y-1.5">
+            <div class="flex items-center justify-between pb-1 border-b border-zinc-800">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+                <span class="text-xs font-bold text-white font-sans">Daily Inflow Telemetry: Peak 16 Users / Day</span>
+              </div>
+              <span class="text-[9px] font-mono text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded">₹1k–₹2k Ad Spike</span>
+            </div>
+            <div class="rounded-xl overflow-hidden border border-zinc-800 bg-zinc-950">
+              <img src="../public/screenshots/real-growth-graph.png" onerror="if(!this.dataset.t1){this.dataset.t1=1;this.src='/screenshots/real-growth-graph.png';}else if(!this.dataset.t2){this.dataset.t2=1;this.src='screenshots/real-growth-graph.png';}" alt="Koimilo Daily Signups Growth Graph" class="w-full h-auto object-cover" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: 4 Real Proven Traction Metrics -->
+        <div class="lg:col-span-6 space-y-2.5 sm:space-y-3">
+          
+          <div class="glass-box p-3.5 rounded-2xl border-l-4 border-emerald-500 space-y-1">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs sm:text-sm font-bold text-white flex items-center gap-2 font-sans">
+                <span>🚀</span> The ₹1,000–₹2,000 Lean Ad Test
+              </h3>
+              <span class="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full">CAC: ₹18–₹20</span>
+            </div>
+            <p class="text-xs text-zinc-300 leading-relaxed">
+              Ran a hyper-local ad test targeting Bhilai college pin-codes (BIT Durg, Rungta, Padmanabhpur). Inflow spiked to a <strong>peak of 16 verified students/day</strong> with 105 signups in a 14-day window.
+            </p>
+          </div>
+
+          <div class="glass-box p-3.5 rounded-2xl border-l-4 border-rose-500 space-y-1">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs sm:text-sm font-bold text-white flex items-center gap-2 font-sans">
+                <span>🎯</span> 74% Funnel Completion Rate
+              </h3>
+              <span class="text-[10px] font-mono font-bold text-rose-300 bg-rose-500/10 px-2 py-0.5 rounded-full">140 / 190 Completed</span>
+            </div>
+            <p class="text-xs text-zinc-300 leading-relaxed">
+              Unlike foreign dating apps where 80% bounce immediately, <strong>140 out of 190 registered students completed the full multi-step onboarding</strong> (uploading real photos, campus tags, and confession prompts).
+            </p>
+          </div>
+
+          <div class="glass-box p-3.5 rounded-2xl border-l-4 border-amber-500 space-y-1">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs sm:text-sm font-bold text-white flex items-center gap-2 font-sans">
+                <span>👑</span> Early Organic VIP Monetization
+              </h3>
+              <span class="text-[10px] font-mono font-bold text-amber-300 bg-amber-500/10 px-2 py-0.5 rounded-full">4 VIP Conversions</span>
+            </div>
+            <p class="text-xs text-zinc-300 leading-relaxed">
+              Converted 4 paying VIP members organically in the earliest cohort without hard paywalls, confirming that students gladly pay for profile spotlights and voice verification.
+            </p>
+          </div>
+
+          <div class="glass-box p-3.5 rounded-2xl border-l-4 border-indigo-500 space-y-1">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs sm:text-sm font-bold text-white flex items-center gap-2 font-sans">
+                <span>🔍</span> Organic Google SEO Dominance
+              </h3>
+              <span class="text-[10px] font-mono font-bold text-indigo-300 bg-indigo-500/10 px-2 py-0.5 rounded-full">Rank #1 Google</span>
+            </div>
+            <p class="text-xs text-zinc-300 leading-relaxed">
+              Programmatic SEO ranks Koimilo on <strong>Page 1 for "dating in bhilai"</strong>, generating zero-cost inbound organic students alongside hostel WhatsApp word-of-mouth.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Empirical Conclusion Banner -->
+      <div class="p-2.5 sm:p-3 rounded-2xl bg-zinc-900 border border-zinc-800 text-xs text-zinc-300 flex flex-wrap items-center justify-between gap-2">
+        <div class="flex items-center gap-2">
+          <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-mono text-[10px] font-bold">EMPIRICAL VALIDATION</span>
+          <span><strong>The Proof:</strong> ₹2,000 ad spend acquired 190 students (140 completed). ₹10 Lakhs deploys 10 regional college clusters.</span>
+        </div>
+        <span class="text-rose-400 font-mono font-bold text-[11px]">Repeatable Growth Engine</span>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 8: MARKET OPPORTUNITY (TAM/SAM/SOM)
+         ========================================== -->
+    <section class="slide" id="slide-8">
+      <div>
+        <span class="text-xs font-mono font-bold text-indigo-400 uppercase tracking-widest">Market Sizing</span>
+        <h2 class="text-xl sm:text-3xl lg:text-4xl font-black text-white mt-0.5 sm:mt-1">The 43 Million Student Underbelly of India</h2>
+        <p class="text-zinc-400 text-xs sm:text-sm mt-1 max-w-3xl">Foreign VCs mistakenly believe India is just Bangalore and South Bombay. 68% of India's higher education happens in Tier-2 and Tier-3 college towns.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 my-auto items-center">
+        <!-- Left: TAM / SAM / SOM Cards -->
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <!-- TAM -->
+          <div class="glass-box p-3.5 sm:p-4 rounded-2xl space-y-1.5">
+            <span class="text-[10px] font-mono text-zinc-400 uppercase">TAM</span>
+            <h3 class="text-2xl sm:text-3xl font-black text-white font-mono">43.3M</h3>
+            <p class="text-[11px] text-zinc-400 leading-relaxed">
+              Enrolled students across 43,796 Indian colleges (Govt. AISHE Report).
+            </p>
+            <p class="text-[10px] font-mono text-rose-400 pt-1 border-t border-zinc-800 font-bold">
+              ₹3,800 Cr/yr Market
+            </p>
+          </div>
+
+          <!-- SAM -->
+          <div class="glass-box p-3.5 sm:p-4 rounded-2xl border border-zinc-700 space-y-1.5">
+            <span class="text-[10px] font-mono text-indigo-400 uppercase">SAM</span>
+            <h3 class="text-2xl sm:text-3xl font-black text-indigo-300 font-mono">29.4M</h3>
+            <p class="text-[11px] text-zinc-400 leading-relaxed">
+              Students in 250+ Tier-2 and Tier-3 educational cities (Bhilai, Indore, Kota).
+            </p>
+            <p class="text-[10px] font-mono text-indigo-400 pt-1 border-t border-zinc-800 font-bold">
+              ₹1,200 Cr/yr Spend
+            </p>
+          </div>
+
+          <!-- SOM -->
+          <div class="glass-highlight p-3.5 sm:p-4 rounded-2xl space-y-1.5">
+            <span class="text-[10px] font-mono text-amber-300 uppercase">SOM (Year 1)</span>
+            <h3 class="text-2xl sm:text-3xl font-black text-amber-300 font-mono">150K</h3>
+            <p class="text-[11px] text-zinc-200 leading-relaxed">
+              Singles across 10 Central India higher education clusters.
+            </p>
+            <p class="text-[10px] font-mono text-amber-400 pt-1 border-t border-rose-500/30 font-bold">
+              Year 1 ARR: ₹2.2 Cr
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: Visual Campus Fest Demographic Image -->
+        <div class="lg:col-span-5 rounded-3xl overflow-hidden glass-box border border-zinc-800 p-2 shadow-xl">
+          <div class="relative h-44 sm:h-56 rounded-2xl overflow-hidden">
+            <img src="../public/story-templates/template-crowd.webp" onerror="if(!this.dataset.t1){this.dataset.t1=1;this.src='/story-templates/template-crowd.webp';}else if(!this.dataset.t2){this.dataset.t2=1;this.src='story-templates/template-crowd.webp';}" alt="Indian Campus Fest Crowd" class="w-full h-full object-cover filter contrast-110" />
+            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent p-3 sm:p-4 flex flex-col justify-end">
+              <span class="text-[10px] font-mono font-bold text-rose-400 uppercase">Demographic Dividend</span>
+              <p class="text-xs sm:text-sm font-black text-white mt-0.5">3.5 Million Fresh 18-Year-Olds Enter College Every Year</p>
+              <p class="text-[10px] text-zinc-300 mt-0.5">Evergreen youth pipeline with 100% UPI smartphone adoption.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2.5 sm:p-3 rounded-xl bg-zinc-900 border border-zinc-800 text-xs text-zinc-400 flex items-center justify-between">
+        <span>📊 <strong>Demographic Reality:</strong> India has the largest Gen-Z youth population in human history.</span>
+        <span class="text-white font-mono text-[11px]">Evergreen Pipeline</span>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 9: 12-MONTH EXPANSION ROADMAP
+         ========================================== -->
+    <section class="slide" id="slide-9">
+      <div>
+        <span class="text-xs font-mono font-bold text-rose-500 uppercase tracking-widest">Execution Velocity</span>
+        <h2 class="text-xl sm:text-3xl lg:text-4xl font-black text-white mt-0.5 sm:mt-1">12-Month Scaled Expansion Blueprint</h2>
+        <p class="text-zinc-400 text-xs sm:text-sm mt-1 max-w-3xl">A systematic, capital-efficient campus rollout designed to capture regional college clusters town by town.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-5 my-auto">
+        <!-- Q1 -->
+        <div class="glass-box p-4 sm:p-5 rounded-2xl sm:rounded-3xl border-t-4 border-rose-500 space-y-2">
+          <span class="text-[10px] font-mono uppercase bg-rose-500/10 text-rose-400 px-2 py-0.5 rounded-md font-bold">MONTHS 1–3</span>
+          <h3 class="text-base sm:text-lg font-bold text-white">Bhilai-Durg Fortress</h3>
+          <ul class="space-y-1 text-xs text-zinc-300 pt-1">
+            <li>• <strong>Target:</strong> 2,000 active students</li>
+            <li>• <strong>Core Hubs:</strong> BIT Durg, RCET Rungta, IIT Bhilai, CSVTU</li>
+            <li>• <strong>Tactics:</strong> 10 Campus Ambassadors, confession fest posters</li>
+            <li>• <strong>Financial:</strong> ₹40,000 / month MRR (Breakeven)</li>
+          </ul>
+        </div>
+
+        <!-- Q2 -->
+        <div class="glass-box p-4 sm:p-5 rounded-2xl sm:rounded-3xl border-t-4 border-amber-500 space-y-2">
+          <span class="text-[10px] font-mono uppercase bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded-md font-bold">MONTHS 4–6</span>
+          <h3 class="text-base sm:text-lg font-bold text-white">State Corridor Expansion</h3>
+          <ul class="space-y-1 text-xs text-zinc-300 pt-1">
+            <li>• <strong>Target:</strong> 12,000 active students</li>
+            <li>• <strong>Corridor:</strong> Raipur & Bilaspur (NIT, AIIMS, HNLU)</li>
+            <li>• <strong>Tactics:</strong> Inter-college fest tie-ups, localized cafe vouchers</li>
+            <li>• <strong>Financial:</strong> ₹1.75 Lakhs / month MRR</li>
+          </ul>
+        </div>
+
+        <!-- Q3-Q4 -->
+        <div class="glass-box p-4 sm:p-5 rounded-2xl sm:rounded-3xl border-t-4 border-indigo-500 space-y-2">
+          <span class="text-[10px] font-mono uppercase bg-indigo-500/10 text-indigo-400 px-2 py-0.5 rounded-md font-bold">MONTHS 7–12</span>
+          <h3 class="text-base sm:text-lg font-bold text-white">Central India Scale</h3>
+          <ul class="space-y-1 text-xs text-zinc-300 pt-1">
+            <li>• <strong>Target:</strong> 50,000+ active students</li>
+            <li>• <strong>Cities:</strong> Indore, Kota, Bhopal, Jabalpur, Nagpur</li>
+            <li>• <strong>Tactics:</strong> Android app release, campus influencer blitz</li>
+            <li>• <strong>Financial:</strong> ₹6.5 Lakhs+ / month MRR (₹78L ARR)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Campus Fest Expansion Banner -->
+      <div class="glass-box p-2.5 sm:p-3 rounded-2xl flex flex-wrap items-center justify-between gap-2.5 border border-zinc-800">
+        <div class="flex items-center gap-2.5">
+          <img src="../public/story-templates/template-crowd.webp" onerror="if(!this.dataset.t1){this.dataset.t1=1;this.src='/story-templates/template-crowd.webp';}else if(!this.dataset.t2){this.dataset.t2=1;this.src='story-templates/template-crowd.webp';}" class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-cover border border-rose-500/40" />
+          <div>
+            <p class="text-xs font-bold text-white">College Fest Ground Blitz Engine</p>
+            <p class="text-[10px] text-zinc-400">Official social partner at BIT Vyom, Rungta Fest, & NIT Raipur Eclectika</p>
+          </div>
+        </div>
+        <span class="text-[11px] font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
+          Winner-Take-Most Local Moat
+        </span>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 10: THE ASK & EXIT STRATEGY
+         ========================================== -->
+    <section class="slide" id="slide-10">
+      <div>
+        <span class="text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest">Investment Opportunity</span>
+        <h2 class="text-xl sm:text-3xl lg:text-4xl font-black text-white mt-0.5 sm:mt-1">The Seed Round & Strategic Exit Avenues</h2>
+        <p class="text-zinc-400 text-xs sm:text-sm mt-1 max-w-3xl">Partner with us to capture India's most underserved, high-frequency youth demographic with lean capital deployment.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 my-auto items-center">
+        <!-- Left: Capital Allocation -->
+        <div class="lg:col-span-6 glass-box p-4 sm:p-5 rounded-3xl space-y-3">
+          <h3 class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+            <span class="text-rose-400">💰</span> Seed Capital Allocation
+          </h3>
+          <div class="space-y-1.5 text-xs text-zinc-300">
+            <div class="flex justify-between items-center p-2 rounded-xl bg-zinc-900 border border-zinc-800">
+              <span>Campus Ambassador Ground Blitz (10 Campuses)</span>
+              <strong class="text-rose-400 font-mono">45%</strong>
+            </div>
+            <div class="flex justify-between items-center p-2 rounded-xl bg-zinc-900 border border-zinc-800">
+              <span>Hyper-Local Digital Ad Tests (CAC < ₹25)</span>
+              <strong class="text-amber-400 font-mono">25%</strong>
+            </div>
+            <div class="flex justify-between items-center p-2 rounded-xl bg-zinc-900 border border-zinc-800">
+              <span>Agora VoIP Audio/Video & Cloud Infra</span>
+              <strong class="text-indigo-400 font-mono">20%</strong>
+            </div>
+            <div class="flex justify-between items-center p-2 rounded-xl bg-zinc-900 border border-zinc-800">
+              <span>Legal, Compliance & Working Capital Reserve</span>
+              <strong class="text-emerald-400 font-mono">10%</strong>
+            </div>
+          </div>
+
+          <div class="pt-1 text-center">
+            <a href="https://koimilo.in" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs transition shadow-lg shadow-rose-600/30 active:scale-95">
+              <span>🚀 Launch Production Web App (koimilo.in)</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Strategic Exit Avenues -->
+        <div class="lg:col-span-6 glass-box p-4 sm:p-5 rounded-3xl space-y-3">
+          <h3 class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+            <span class="text-indigo-400">🎯</span> Strategic Acquirers & Precedents
+          </h3>
+          <div class="space-y-2 text-xs text-zinc-300">
+            <div class="p-2.5 rounded-xl bg-zinc-900 border border-zinc-800">
+              <div class="flex justify-between items-center">
+                <strong class="text-white">Info Edge (Jeevansathi / Naukri)</strong>
+                <span class="text-[9px] font-mono text-emerald-400">Acquired Aisle</span>
+              </div>
+              <p class="text-[11px] text-zinc-400 mt-0.5">Needs an organic Gen-Z college feeder funnel before students graduate into matrimonial apps.</p>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-zinc-900 border border-zinc-800">
+              <div class="flex justify-between items-center">
+                <strong class="text-white">Match Group / Bumble Inc.</strong>
+                <span class="text-[9px] font-mono text-rose-400">APAC Target</span>
+              </div>
+              <p class="text-[11px] text-zinc-400 mt-0.5">Historically acquires dominant regional players after direct product struggles in non-metro Bharat.</p>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-zinc-900 border border-zinc-800">
+              <div class="flex justify-between items-center">
+                <strong class="text-white">ShareChat / VerSe Innovation</strong>
+                <span class="text-[9px] font-mono text-amber-400">Regional Social</span>
+              </div>
+              <p class="text-[11px] text-zinc-400 mt-0.5">Expanding beyond video into high-frequency, monetizable local social interaction networks.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2.5 sm:p-3 rounded-xl bg-zinc-900 border border-zinc-800 text-xs text-zinc-300 flex flex-wrap items-center justify-between gap-2">
+        <div class="flex items-center gap-2.5">
+          <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-rose-600 to-pink-500 p-0.5 shrink-0 flex items-center justify-center">
+            <img src="../public/icon-192.png" onerror="if(!this.dataset.t1){this.dataset.t1=1;this.src='/icon-192.png';}else if(!this.dataset.t2){this.dataset.t2=1;this.src='icon-192.png';}else if(!this.dataset.t3){this.dataset.t3=1;this.src='../public/icon.png';}else if(!this.dataset.t4){this.dataset.t4=1;this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 128 128\'><rect width=\'128\' height=\'128\' rx=\'28\' fill=\'%23e11d48\'/><circle cx=\'64\' cy=\'64\' r=\'24\' fill=\'none\' stroke=\'%23ffffff\' stroke-width=\'9\'/><path d=\'M40 74c0 16 24 24 24 24s24-8 24-24c0-10-9-16-16-16-5 0-8 2-8 2-2-11-4-12-12-12-9 0-12 8-12 16z\' fill=\'%23ffffff\' opacity=\'0.75\'/></svg>';}" alt="Koimilo Logo" class="w-full h-full rounded-[6px] object-cover" />
+          </div>
+          <span>📫 <strong>Contact Founder Office:</strong> founder@koimilo.in • Bhilai-Durg, Chhattisgarh</span>
+        </div>
+        <span class="text-rose-400 font-bold font-mono text-[11px]">Seed Diligence Materials Ready</span>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ==========================================
+       BOTTOM THUMB-FRIENDLY CONTROLLER (Mobile Native)
+       ========================================== -->
+  <div class="slide-nav fixed bottom-0 left-0 right-0 z-50 p-2.5 sm:p-4 flex items-center justify-between pointer-events-none bg-gradient-to-t from-zinc-950 via-zinc-950/90 to-transparent">
+    
+    <!-- Slide Title Label (Desktop) -->
+    <div class="hidden lg:flex items-center gap-2 pointer-events-auto bg-zinc-900/90 border border-zinc-800/90 px-3.5 py-1.5 rounded-2xl backdrop-blur-md">
+      <span class="text-[11px] font-mono text-zinc-500">Slide:</span>
+      <span id="slide-name-badge" class="text-xs font-bold text-white">Cover & Executive Thesis</span>
+    </div>
+
+    <!-- Navigation Capsule (Mobile Centered) -->
+    <div class="flex items-center gap-2 pointer-events-auto mx-auto lg:mx-0 bg-zinc-900/95 border border-zinc-800/90 p-1.5 rounded-2xl backdrop-blur-md shadow-2xl">
+      <button onclick="prevSlide()" id="btn-prev" class="px-3.5 sm:px-4 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 active:scale-95 text-white font-bold text-xs transition flex items-center gap-1">
+        ← <span class="hidden sm:inline">Prev</span>
+      </button>
+
+      <!-- Center Slide Counter -->
+      <button onclick="toggleSlideMenu()" class="px-3 py-1.5 rounded-xl bg-zinc-950/80 hover:bg-zinc-800 border border-zinc-800 text-center transition flex items-center gap-1.5" title="Click to jump slide">
+        <span id="nav-counter" class="font-mono text-xs font-bold text-rose-400">01</span>
+        <span class="text-zinc-600 font-mono text-xs">/</span>
+        <span class="font-mono text-xs text-zinc-500">10</span>
+        <span class="text-[9px] text-zinc-400">▾</span>
+      </button>
+
+      <button onclick="nextSlide()" id="btn-next" class="px-3.5 sm:px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 active:scale-95 text-white font-bold text-xs transition flex items-center gap-1 shadow-lg shadow-rose-600/30">
+        <span class="hidden sm:inline">Next</span> →
+      </button>
+    </div>
+
+    <!-- Keyboard Hint (Desktop) -->
+    <div class="hidden lg:block pointer-events-auto text-xs font-mono text-zinc-500">
+      <kbd class="px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-300">←</kbd> <kbd class="px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-300">→</kbd> or <kbd class="px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-300">Space</kbd>
+    </div>
+  </div>
+
+  <!-- SCRIPT FOR SLIDE CONTROLS & CALCULATORS -->
+  <script>
+    const totalSlides = 10;
+    let currentSlide = 1;
+
+    const slideTitles = [
+      "1. Cover & Executive Thesis",
+      "2. The 'Friend Zone' Trauma & Male Insecurity",
+      "3. Female Reputation & The WhatsApp Shield",
+      "4. Why Tinder & Bumble Bleed Money in Bharat",
+      "5. The 'Chai-Samosa' Sachet Monetization Engine",
+      "6. Interactive Revenue & Profit Simulator",
+      "7. The Bhilai Pilot: Real Unit Economics",
+      "8. Market Opportunity (43M Students)",
+      "9. 12-Month Scaled Expansion Blueprint",
+      "10. The Investment Ask & Exit Landscape"
+    ];
+
+    function initSlideMenu() {
+      const container = document.getElementById('slide-jump-list');
+      container.innerHTML = '';
+      slideTitles.forEach((title, idx) => {
+        const num = idx + 1;
+        const btn = document.createElement('button');
+        btn.className = `w-full text-left p-3 rounded-xl border text-xs font-bold transition flex items-center justify-between ${num === currentSlide ? 'bg-rose-600/20 border-rose-500 text-rose-300' : 'bg-zinc-950 border-zinc-800 text-zinc-300 hover:bg-zinc-800'}`;
+        btn.innerHTML = `<span>${title}</span> <span class="font-mono text-[10px] text-zinc-500">${num.toString().padStart(2, '0')}</span>`;
+        btn.onclick = () => {
+          goToSlide(num);
+          toggleSlideMenu();
+        };
+        container.appendChild(btn);
+      });
+    }
+
+    function toggleSlideMenu() {
+      const modal = document.getElementById('slide-menu-modal');
+      modal.classList.toggle('hidden');
+    }
+
+    function goToSlide(n) {
+      if (n < 1 || n > totalSlides) return;
+      document.getElementById(`slide-${currentSlide}`).classList.remove('active');
+      currentSlide = n;
+      document.getElementById(`slide-${currentSlide}`).classList.add('active');
+
+      // Scroll to top of slide on mobile
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Update counters
+      const paddedNum = currentSlide.toString().padStart(2, '0');
+      document.getElementById('current-slide-num').innerText = paddedNum;
+      document.getElementById('nav-counter').innerText = paddedNum;
+      document.getElementById('slide-name-badge').innerText = slideTitles[currentSlide - 1];
+      document.getElementById('progress-bar').style.width = `${(currentSlide / totalSlides) * 100}%`;
+
+      // Update Prev/Next buttons
+      document.getElementById('btn-prev').disabled = (currentSlide === 1);
+      document.getElementById('btn-prev').style.opacity = (currentSlide === 1) ? '0.4' : '1';
+      document.getElementById('btn-next').innerText = (currentSlide === totalSlides) ? 'Restart ↺' : 'Next →';
+
+      initSlideMenu();
+    }
+
+    function nextSlide() {
+      if (currentSlide === totalSlides) {
+        goToSlide(1);
+      } else {
+        goToSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        goToSlide(currentSlide - 1);
+      }
+    }
+
+    // Keyboard Navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevSlide();
+      } else if (e.key === 'Home') {
+        goToSlide(1);
+      } else if (e.key === 'End') {
+        goToSlide(totalSlides);
+      } else if (e.key.toLowerCase() === 'f') {
+        toggleFullscreen();
+      } else if (e.key === 'Escape') {
+        const modal = document.getElementById('slide-menu-modal');
+        if (!modal.classList.contains('hidden')) {
+          modal.classList.add('hidden');
+        }
+      }
+    });
+
+    // Touch Swipe Navigation for Mobile
+    let touchStartX = 0;
+    let touchStartY = 0;
+    document.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    document.addEventListener('touchend', (e) => {
+      const diffX = e.changedTouches[0].screenX - touchStartX;
+      const diffY = e.changedTouches[0].screenY - touchStartY;
+      // Dominant horizontal swipe (> 45px)
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 45) {
+        if (diffX < 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+      }
+    }, { passive: true });
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen().catch(() => {});
+        }
+      }
+    }
+
+    // Interactive Profit Simulator on Slide 6
+    function setDeckPreset(hubs, studPerHub, conv) {
+      document.getElementById('deck-slider-hubs').value = hubs;
+      document.getElementById('deck-slider-stud').value = studPerHub;
+      document.getElementById('deck-slider-conv').value = conv;
+      deckRecalc();
+    }
+
+    function deckRecalc() {
+      const hubs = parseInt(document.getElementById('deck-slider-hubs').value);
+      const studPerHub = parseInt(document.getElementById('deck-slider-stud').value);
+      const conv = parseFloat(document.getElementById('deck-slider-conv').value) / 100;
+
+      document.getElementById('deck-hub-val').innerText = `${hubs} Campuses`;
+      document.getElementById('deck-stud-val').innerText = `${studPerHub.toLocaleString('en-IN')} Students`;
+      document.getElementById('deck-conv-val').innerText = `${(conv * 100).toFixed(1)}% Paying`;
+
+      const totalUsers = hubs * studPerHub;
+      const payers = Math.round(totalUsers * conv);
+      const arpu = 149; // blended sachet ARPU
+      const mrr = payers * arpu;
+      const arr = mrr * 12;
+
+      // Infra scaling formula: base ₹5,000 + ₹0.5 per active user
+      const infra = Math.round(5000 + (totalUsers * 0.5));
+      const netProfit = Math.max(0, mrr - infra);
+      const margin = mrr > 0 ? ((netProfit / mrr) * 100).toFixed(1) : 0;
+
+      document.getElementById('deck-out-users').innerText = totalUsers.toLocaleString('en-IN');
+      document.getElementById('deck-out-payers').innerText = payers.toLocaleString('en-IN');
+      document.getElementById('deck-out-mrr').innerText = `₹${(mrr / 100000).toFixed(2)} Lakhs`;
+      document.getElementById('deck-out-arr').innerText = `₹${(arr / 100000).toFixed(2)} Lakhs`;
+      document.getElementById('deck-out-infra').innerText = `₹${infra.toLocaleString('en-IN')}`;
+      document.getElementById('deck-out-ebitda').innerText = `${margin}%`;
+    }
+
+    // Initialize on load
+    window.onload = () => {
+      initSlideMenu();
+      deckRecalc();
+    };
+  </script>
+</body>
+</html>
